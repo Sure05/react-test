@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
+import Tree from "./components/Tree";
+
+const tree = require('./treeData.json')
 
 function App() {
+  const [jsonData, setJsonData] = useState(tree.data)
+  const [hide, setHide] = useState(true)
+  console.log(jsonData)
+  const callback = (status) => {
+    setHide(status);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {jsonData.map((el, index) => <Tree key={index} hide={hide} parentCallback={callback} level={0} data={el} />)}
     </div>
   );
 }

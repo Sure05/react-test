@@ -1,0 +1,6 @@
+.name:before {
+    content: '+';
+}
+.name.opened:before {
+    content: '-';
+}
